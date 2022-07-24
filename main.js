@@ -30,30 +30,30 @@ function RN_maker () {
 
 function Start(){
     RN_maker();
-    result.textContent = "시작"
+    result.textContent = "Start ~ !!"
     user_chance=chance.value;
-    remain.textContent = chance.value;
+    remain.textContent = `Remain Chances : ${user_chance} `;
 }
 
 function Play(){
     let user_input = submit.value;
 
     user_chance -- ;
-    remain.textContent = user_chance;
+    remain.textContent = `Remain Chances : ${user_chance} `;
 
     if(user_input>random_number){
-        result.textContent = "Down"
+        result.textContent = "Down ~ !!"
     }
     else if(user_input<random_number){
-        result.textContent = "Up"
+        result.textContent = "Up ~ !!"
     }
     else{
-        result.textContent = "Correct"
+        result.textContent = "Correct :)"
     }
 
     if(user_chance<1){
         game_over = true;
-        result.textContent = "Game Over"
+        result.textContent = "Game Over :("
     }
 
     if(game_over==true){
