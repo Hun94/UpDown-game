@@ -18,7 +18,9 @@ check.addEventListener("click", Play);
 let reset = document.getElementById("reset-button");
 reset.addEventListener("click", Reset)
 
-let submit = document.getElementById("submit-number"); 
+let submit = document.getElementById("submit-number");
+submit.addEventListener("focus", function(){submit.value="";});
+
 let chance = document.getElementById("chance-number");
 let result = document.getElementById("result-area"); 
 let remain = document.getElementById("remain-chance")
@@ -63,6 +65,7 @@ function Play(){
     }
     else{
         result.textContent = "Correct :)"
+        game_over=true;
     }
 
     if(user_chance<1){
@@ -71,9 +74,7 @@ function Play(){
     }
 
     //히스토리
-    history.push(user_input);
-    console.log(history);
-    
+    history.push(user_input);    
 
     //게임 오버
     if(game_over==true){
