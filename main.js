@@ -7,6 +7,7 @@
 let random_number;
 let game_over=false;
 let user_chance = 0;
+let history=[];
 
 let start = document.getElementById("start-button");
 start.addEventListener("click", Start);
@@ -38,9 +39,22 @@ function Start(){
 function Play(){
     let user_input = submit.value;
 
+    //입력된 숫자 유효성 검사
+    if(user_input>100 || user_input<1){
+        result.textContent = "Please input range 1~100"
+        return;
+    }
+    else if(history.includes(user_input)){
+        result.textContent = "Already input number, please input another number"
+        return;
+    }
+
+    //기회차감
     user_chance -- ;
     remain.textContent = `Remain Chances : ${user_chance} `;
 
+
+    //게임 진행
     if(user_input>random_number){
         result.textContent = "Down ~ !!"
     }
@@ -56,11 +70,19 @@ function Play(){
         result.textContent = "Game Over :("
     }
 
+    //히스토리
+    history.push(user_input);
+    console.log(history);
+    
+
+    //게임 오버
     if(game_over==true){
         check.disabled = true
     }
 
 }
+
+//리셋
 function Reset(){
     submit.value="";
     chance.value="";
